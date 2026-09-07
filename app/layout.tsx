@@ -32,11 +32,11 @@ const diplomata = Diplomata({
 });
 
 const ogImage = {
-  url: `${SITE_URL}/opengraph-image`,
-  secureUrl: `${SITE_URL}/opengraph-image`,
-  width: 1200,
-  height: 1200,
-  alt: `${SITE_NAME} — full-screen clock and countdown timer`,
+  url: `${SITE_URL}/image.png`,
+  secureUrl: `${SITE_URL}/image.png`,
+  width: 1254,
+  height: 1254,
+  alt: "Timer — Focus, Do, Repeat",
   type: "image/png",
 };
 
