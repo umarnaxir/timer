@@ -4,12 +4,12 @@ import styled, { keyframes } from "styled-components";
 import { useKolkataNow } from "@/hooks/useKolkataNow";
 import Clock from "@/components/Clock";
 import Timer from "@/components/Timer";
-import ThemeToggle from "@/components/ThemeToggle";
+import TopControls from "@/components/TopControls";
 
 const fadeUp = keyframes`
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -30,7 +30,7 @@ const Page = styled.main`
   padding:
     max(1.25rem, env(safe-area-inset-top))
     max(1.25rem, env(safe-area-inset-right))
-    max(1.25rem, env(safe-area-inset-bottom))
+    max(3.6rem, calc(env(safe-area-inset-bottom) + 2.6rem))
     max(1.25rem, env(safe-area-inset-left));
   background:
     radial-gradient(ellipse 70% 50% at 50% 18%, var(--accent-soft), transparent 58%),
@@ -42,9 +42,11 @@ const Content = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: min(100%, 56rem);
+  width: min(100%, 96vw);
   max-height: 100%;
-  animation: ${fadeUp} 0.7s ease both;
+  margin-top: -1.6rem;
+  margin-bottom: 1.4rem;
+  animation: ${fadeUp} 0.65s ease both;
 
   @media (prefers-reduced-motion: reduce) {
     animation: none;
@@ -58,18 +60,57 @@ const ClockBlock = styled.section`
   max-width: 100%;
 `;
 
+const Footer = styled.footer`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  padding: 0.7rem 1rem max(1.15rem, env(safe-area-inset-bottom));
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-align: center;
+`;
+
+const Rule = styled.hr`
+  width: min(12rem, 42vw);
+  height: 1px;
+  margin: 0 auto 0.7rem;
+  border: 0;
+  background: var(--text-muted);
+  opacity: 0.45;
+`;
+
+const Credit = styled.a`
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
+
+  &:hover {
+    color: var(--text);
+  }
+`;
+
 export default function ClockPage() {
   const now = useKolkataNow();
 
   return (
     <Page>
-      <ThemeToggle />
+      <TopControls />
       <Content>
-        <ClockBlock aria-label="Current time">
+        <ClockBlock aria-label="Indian Standard Time">
           <Clock now={now} />
         </ClockBlock>
       </Content>
       <Timer />
+      <Footer>
+        <Rule />
+        Build By {" "}
+        <Credit href="https://umarnazir.vercel.app/" target="_blank" rel="noopener noreferrer">
+          Umar Nazir
+        </Credit>
+      </Footer>
     </Page>
   );
 }

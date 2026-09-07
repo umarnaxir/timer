@@ -7,10 +7,12 @@ const Frame = styled.span`
   position: relative;
   display: inline-block;
   overflow: hidden;
-  width: 2.15em;
-  height: 1.15em;
+  width: 2.8em;
+  min-width: 2.8em;
+  height: 1.2em;
   vertical-align: baseline;
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 `;
 
 const slideIn = keyframes`
@@ -42,6 +44,7 @@ const slideOut = keyframes`
 const Incoming = styled.span`
   display: inline-block;
   width: 100%;
+  white-space: nowrap;
   animation: ${slideIn} 520ms cubic-bezier(0.16, 1, 0.3, 1);
 
   @media (prefers-reduced-motion: reduce) {

@@ -5,7 +5,7 @@ import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 
 export const ogSize = {
   width: 1200,
-  height: 630,
+  height: 1200,
 };
 
 export const ogAlt = `${SITE_NAME} — full-screen clock and countdown timer`;
@@ -32,11 +32,11 @@ export async function createOgImage() {
         <div
           style={{
             position: "absolute",
-            top: 0,
-            width: "70%",
-            height: "42%",
+            top: 80,
+            width: "78%",
+            height: "38%",
             background:
-              "radial-gradient(ellipse at 50% 0%, rgba(212,179,127,0.18), transparent 70%)",
+              "radial-gradient(ellipse at 50% 0%, rgba(212,179,127,0.2), transparent 72%)",
           }}
         />
         <div
@@ -44,20 +44,20 @@ export async function createOgImage() {
             display: "flex",
             alignItems: "flex-end",
             fontFamily: "Diplomata",
-            fontSize: 88,
+            fontSize: 84,
             fontWeight: 400,
             letterSpacing: 2,
-            lineHeight: 0.9,
+            lineHeight: 1,
           }}
         >
           02:15:42
           <span
             style={{
-              marginLeft: 18,
-              marginBottom: 18,
+              marginLeft: 16,
+              marginBottom: 12,
               fontFamily: "sans-serif",
-              fontSize: 36,
-              letterSpacing: 6,
+              fontSize: 32,
+              letterSpacing: 5,
               color: "#8d887c",
             }}
           >
@@ -66,9 +66,9 @@ export async function createOgImage() {
         </div>
         <div
           style={{
-            marginTop: 28,
+            marginTop: 24,
             color: "#8d887c",
-            fontSize: 22,
+            fontSize: 24,
             letterSpacing: 1,
           }}
         >
@@ -76,19 +76,19 @@ export async function createOgImage() {
         </div>
         <div
           style={{
-            width: 88,
+            width: 96,
             height: 1,
-            marginTop: 36,
+            marginTop: 48,
             background: "rgba(244,240,230,0.16)",
           }}
         />
         <div
           style={{
-            marginTop: 28,
+            marginTop: 36,
             color: "#d4b37f",
-            fontSize: 28,
+            fontSize: 34,
             fontWeight: 600,
-            letterSpacing: 6,
+            letterSpacing: 8,
             textTransform: "uppercase",
           }}
         >
@@ -96,12 +96,12 @@ export async function createOgImage() {
         </div>
         <div
           style={{
-            maxWidth: 720,
-            marginTop: 12,
+            maxWidth: 760,
+            marginTop: 16,
             color: "#8d887c",
-            fontSize: 20,
+            fontSize: 26,
             textAlign: "center",
-            lineHeight: 1.4,
+            lineHeight: 1.45,
           }}
         >
           {SITE_DESCRIPTION}

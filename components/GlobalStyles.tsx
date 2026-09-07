@@ -23,6 +23,7 @@ const GlobalStyles = createGlobalStyle`
     --glow: rgba(212, 179, 127, 0.16);
     --focus: #e6c993;
     --shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+    --panel-bg: rgba(17, 18, 24, 0.82);
   }
 
   [data-theme="light"] {
@@ -45,6 +46,7 @@ const GlobalStyles = createGlobalStyle`
     --glow: rgba(143, 109, 56, 0.08);
     --focus: #8f6d38;
     --shadow: 0 16px 40px rgba(80, 62, 32, 0.08);
+    --panel-bg: rgba(255, 253, 248, 0.86);
   }
 
   *,

@@ -1,11 +1,19 @@
 export const KOLKATA_TIME_ZONE = "Asia/Kolkata";
 
-const timeFormatter = new Intl.DateTimeFormat("en-US", {
+const time12Formatter = new Intl.DateTimeFormat("en-US", {
   timeZone: KOLKATA_TIME_ZONE,
   hour: "2-digit",
   minute: "2-digit",
   second: "2-digit",
   hour12: true,
+});
+
+const time24Formatter = new Intl.DateTimeFormat("en-GB", {
+  timeZone: KOLKATA_TIME_ZONE,
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+  hourCycle: "h23",
 });
 
 const dateFormatter = new Intl.DateTimeFormat("en-US", {
@@ -42,19 +50,26 @@ export type KolkataTime = {
   text: string;
 };
 
-export function formatKolkataTime(date: Date): KolkataTime {
-  const parts = timeFormatter.formatToParts(date);
+export function formatKolkataTime(
+  date: Date,
+  hour12 = true,
+  showSeconds = true,
+): KolkataTime {
+  const parts = (hour12 ? time12Formatter : time24Formatter).formatToParts(date);
   const hours = partValue(parts, "hour").padStart(2, "0");
   const minutes = partValue(parts, "minute").padStart(2, "0");
   const seconds = partValue(parts, "second").padStart(2, "0");
-  const period = partValue(parts, "dayPeriod").replace(/\./g, "").toUpperCase();
+  const period = hour12
+    ? partValue(parts, "dayPeriod").replace(/\./g, "").toUpperCase()
+    : "";
+  const clock = showSeconds ? `${hours}:${minutes}:${seconds}` : `${hours}:${minutes}`;
 
   return {
     hours,
     minutes,
     seconds,
     period,
-    text: `${hours}:${minutes}:${seconds} ${period}`,
+    text: period ? `${clock} ${period}` : clock,
   };
 }
 
