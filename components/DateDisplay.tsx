@@ -12,8 +12,13 @@ const DateText = styled.p`
   line-height: 1.3;
   text-align: right;
 
-  @media (max-height: 560px) {
-    margin-top: 0.35rem;
+  @media (max-width: 720px) {
+    margin-top: 0.4rem;
+    font-size: clamp(0.7rem, 3.1vw, 0.82rem);
+  }
+
+  @media (max-height: 500px) and (orientation: landscape) {
+    margin-top: 0.28rem;
   }
 `;
 

@@ -39,14 +39,25 @@ const TimeRow = styled.time<{ $showSeconds: boolean }>`
   text-shadow: 0 0 48px var(--glow);
   white-space: nowrap;
 
-  @media (max-height: 560px) {
+  @media (max-width: 720px) {
     font-size: ${({ $showSeconds }) =>
-      $showSeconds ? "clamp(1.45rem, 5.6vw, 3.6rem)" : "clamp(2rem, 8.4vw, 5rem)"};
+      $showSeconds ? "clamp(2rem, 9.6vw, 3.4rem)" : "clamp(2.8rem, 14vw, 4.8rem)"};
+    letter-spacing: 0;
   }
 
-  @media (max-width: 420px) {
+  @media (max-width: 430px) {
     font-size: ${({ $showSeconds }) =>
-      $showSeconds ? "clamp(1.25rem, 5.8vw, 2.1rem)" : "clamp(1.8rem, 10vw, 3.2rem)"};
+      $showSeconds ? "clamp(2.05rem, 10.8vw, 2.75rem)" : "clamp(2.7rem, 15.5vw, 3.95rem)"};
+  }
+
+  @media (max-width: 360px) {
+    font-size: ${({ $showSeconds }) =>
+      $showSeconds ? "clamp(1.85rem, 10.2vw, 2.35rem)" : "clamp(2.35rem, 14.5vw, 3.3rem)"};
+  }
+
+  @media (max-height: 500px) and (orientation: landscape) {
+    font-size: ${({ $showSeconds }) =>
+      $showSeconds ? "clamp(1.55rem, 6.2vw, 2.6rem)" : "clamp(2.1rem, 9vw, 3.4rem)"};
   }
 `;
 
@@ -70,6 +81,12 @@ const Period = styled.span`
   letter-spacing: 0.14em;
   line-height: 1;
   text-transform: uppercase;
+
+  @media (max-width: 720px) {
+    margin-left: 0.18em;
+    font-size: 0.2em;
+    letter-spacing: 0.1em;
+  }
 `;
 
 const Quote = styled.p`
@@ -81,6 +98,13 @@ const Quote = styled.p`
   letter-spacing: 0.02em;
   line-height: 1.55;
   text-align: center;
+
+  @media (max-width: 720px) {
+    max-width: min(28rem, 92vw);
+    margin-top: 0.7rem;
+    font-size: clamp(0.74rem, 3.4vw, 0.9rem);
+    line-height: 1.45;
+  }
 `;
 
 const Zone = styled.p`
@@ -91,6 +115,12 @@ const Zone = styled.p`
   letter-spacing: 0.16em;
   text-align: center;
   text-transform: uppercase;
+
+  @media (max-width: 720px) {
+    margin-top: 0.4rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+  }
 `;
 
 export default function Clock({ now }: ClockProps) {

@@ -36,6 +36,14 @@ const Page = styled.main`
     radial-gradient(ellipse 70% 50% at 50% 18%, var(--accent-soft), transparent 58%),
     var(--bg);
   transition: background-color 0.35s ease;
+
+  @media (max-width: 720px) {
+    padding:
+      max(0.85rem, env(safe-area-inset-top))
+      max(0.75rem, env(safe-area-inset-right))
+      max(3.1rem, calc(env(safe-area-inset-bottom) + 2.2rem))
+      max(0.75rem, env(safe-area-inset-left));
+  }
 `;
 
 const Content = styled.div`
@@ -47,6 +55,13 @@ const Content = styled.div`
   margin-top: -1.6rem;
   margin-bottom: 1.4rem;
   animation: ${fadeUp} 0.65s ease both;
+
+  @media (max-width: 720px) {
+    width: min(100%, 100vw);
+    margin-top: -0.4rem;
+    margin-bottom: 0.35rem;
+    padding: 0 0.15rem;
+  }
 
   @media (prefers-reduced-motion: reduce) {
     animation: none;
@@ -71,6 +86,11 @@ const Footer = styled.footer`
   font-size: 0.72rem;
   letter-spacing: 0.04em;
   text-align: center;
+
+  @media (max-width: 720px) {
+    padding: 0.5rem 0.75rem max(0.95rem, env(safe-area-inset-bottom));
+    font-size: 0.64rem;
+  }
 `;
 
 const Rule = styled.hr`

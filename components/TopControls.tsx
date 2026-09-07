@@ -15,6 +15,12 @@ const Bar = styled.div`
   z-index: 4;
   display: flex;
   gap: 0.4rem;
+
+  @media (max-width: 720px) {
+    top: max(0.65rem, env(safe-area-inset-top));
+    right: max(0.65rem, env(safe-area-inset-right));
+    gap: 0.28rem;
+  }
 `;
 
 const IconButton = styled.button<{ $active?: boolean }>`
@@ -46,6 +52,17 @@ const IconButton = styled.button<{ $active?: boolean }>`
     width: 1.05rem;
     height: 1.05rem;
   }
+
+  @media (max-width: 720px) {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.32rem;
+
+    svg {
+      width: 0.92rem;
+      height: 0.92rem;
+    }
+  }
 `;
 
 const MenuWrap = styled.div`
@@ -65,6 +82,14 @@ const Panel = styled.div`
   background: var(--panel-bg);
   box-shadow: var(--shadow);
   backdrop-filter: blur(18px);
+
+  @media (max-width: 720px) {
+    top: calc(100% + 0.32rem);
+    width: min(15.25rem, calc(100vw - 1.15rem));
+    max-height: min(20.5rem, calc(100dvh - 4.4rem));
+    padding: 0.32rem;
+    border-radius: 0.38rem;
+  }
 `;
 
 const Row = styled.div`
@@ -74,12 +99,21 @@ const Row = styled.div`
   gap: 0.75rem;
   padding: 0.55rem 0.45rem;
   border-radius: 0.35rem;
+
+  @media (max-width: 720px) {
+    gap: 0.4rem;
+    padding: 0.34rem 0.28rem;
+  }
 `;
 
 const Label = styled.p`
   margin: 0;
   color: var(--text);
   font-size: 0.78rem;
+
+  @media (max-width: 720px) {
+    font-size: 0.68rem;
+  }
 `;
 
 const Hint = styled.span`
@@ -87,6 +121,11 @@ const Hint = styled.span`
   margin-top: 0.15rem;
   color: var(--text-muted);
   font-size: 0.66rem;
+
+  @media (max-width: 720px) {
+    margin-top: 0.08rem;
+    font-size: 0.56rem;
+  }
 `;
 
 const Toggle = styled.button<{ $on?: boolean }>`
@@ -97,6 +136,11 @@ const Toggle = styled.button<{ $on?: boolean }>`
   border-radius: 999px;
   background: ${({ $on }) => ($on ? "var(--primary-bg)" : "var(--button-bg-hover)")};
   cursor: pointer;
+
+  @media (max-width: 720px) {
+    min-width: 2.15rem;
+    height: 1.22rem;
+  }
 `;
 
 const ToggleKnob = styled.span<{ $on?: boolean }>`
@@ -107,6 +151,12 @@ const ToggleKnob = styled.span<{ $on?: boolean }>`
   background: ${({ $on }) => ($on ? "var(--primary-text)" : "var(--text)")};
   transform: translateX(${({ $on }) => ($on ? "1.2rem" : "0")});
   transition: transform 0.18s ease;
+
+  @media (max-width: 720px) {
+    width: 0.94rem;
+    height: 0.94rem;
+    transform: translateX(${({ $on }) => ($on ? "0.94rem" : "0")});
+  }
 `;
 
 const Select = styled.select`
@@ -117,6 +167,13 @@ const Select = styled.select`
   border-radius: 0.3rem;
   background: var(--input-bg);
   color: var(--text);
+
+  @media (max-width: 720px) {
+    max-width: 6.6rem;
+    height: 1.55rem;
+    padding: 0 0.28rem;
+    font-size: 0.68rem;
+  }
 `;
 
 const TextButton = styled.button`
@@ -130,6 +187,13 @@ const TextButton = styled.button`
   color: var(--text);
   font-size: 0.74rem;
   cursor: pointer;
+
+  @media (max-width: 720px) {
+    min-height: 1.6rem;
+    margin-top: 0.08rem;
+    padding: 0.22rem 0.4rem;
+    font-size: 0.64rem;
+  }
 
   &:hover {
     background: var(--button-bg-hover);
@@ -148,6 +212,12 @@ const Divider = styled.hr`
   margin: 0.25rem 0.2rem;
   border: 0;
   border-top: 1px solid var(--line);
+`;
+
+const DesktopOnly = styled.div`
+  @media (max-width: 720px) {
+    display: none;
+  }
 `;
 
 function IconSun() {
@@ -368,30 +438,32 @@ export default function TopControls() {
                 onClick={() => setPreference("showTimezone", !preferences.showTimezone)}
               />
             </Row>
-            <Divider />
-            <Row>
-              <Label>
-                Keyboard shortcuts
-                <Hint>
-                  <Shortcut>
-                    <span>Start / Pause</span>
-                    <span>Space</span>
-                  </Shortcut>
-                  <Shortcut>
-                    <span>Reset</span>
-                    <span>R</span>
-                  </Shortcut>
-                  <Shortcut>
-                    <span>Focus mode</span>
-                    <span>F</span>
-                  </Shortcut>
-                  <Shortcut>
-                    <span>Exit focus</span>
-                    <span>Esc</span>
-                  </Shortcut>
-                </Hint>
-              </Label>
-            </Row>
+            <DesktopOnly>
+              <Divider />
+              <Row>
+                <Label>
+                  Keyboard shortcuts
+                  <Hint>
+                    <Shortcut>
+                      <span>Start / Pause</span>
+                      <span>Space</span>
+                    </Shortcut>
+                    <Shortcut>
+                      <span>Reset</span>
+                      <span>R</span>
+                    </Shortcut>
+                    <Shortcut>
+                      <span>Focus mode</span>
+                      <span>F</span>
+                    </Shortcut>
+                    <Shortcut>
+                      <span>Exit focus</span>
+                      <span>Esc</span>
+                    </Shortcut>
+                  </Hint>
+                </Label>
+              </Row>
+            </DesktopOnly>
             <TextButton
               type="button"
               onClick={() => {

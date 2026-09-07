@@ -20,6 +20,14 @@ const Panel = styled.section`
   background: var(--panel-bg);
   box-shadow: var(--shadow);
   backdrop-filter: blur(18px);
+
+  @media (max-width: 720px) {
+    right: max(0.65rem, env(safe-area-inset-right));
+    bottom: max(2.85rem, calc(env(safe-area-inset-bottom) + 2.05rem));
+    width: min(12.6rem, calc(100vw - 1.3rem));
+    padding: 0.52rem 0.52rem 0.55rem;
+    border-radius: 0.38rem;
+  }
 `;
 
 const Header = styled.div`
@@ -56,6 +64,11 @@ const IconButton = styled.button`
   color: var(--text);
   cursor: pointer;
 
+  @media (max-width: 720px) {
+    width: 1.45rem;
+    height: 1.45rem;
+  }
+
   &:hover {
     background: var(--button-bg-hover);
   }
@@ -67,6 +80,10 @@ const Progress = styled.div`
   margin-top: 0.65rem;
   overflow: hidden;
   background: var(--line);
+
+  @media (max-width: 720px) {
+    margin-top: 0.4rem;
+  }
 `;
 
 const ProgressValue = styled.span<{ $value: number; $active: boolean }>`
@@ -93,6 +110,12 @@ const Display = styled.p<{ $finished: boolean }>`
   letter-spacing: 0.06em;
   line-height: 1;
 
+  @media (max-width: 720px) {
+    margin-top: 0.32rem;
+    font-size: 1.02rem;
+    letter-spacing: 0.04em;
+  }
+
   ${({ $finished }) =>
     $finished &&
     css`
@@ -108,6 +131,12 @@ const StatusText = styled.p`
   font-size: 0.62rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+
+  @media (max-width: 720px) {
+    margin-top: 0.12rem;
+    min-height: 0.8em;
+    font-size: 0.54rem;
+  }
 `;
 
 const Fields = styled.div`
@@ -115,6 +144,11 @@ const Fields = styled.div`
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.4rem;
   margin-top: 0.6rem;
+
+  @media (max-width: 720px) {
+    gap: 0.28rem;
+    margin-top: 0.38rem;
+  }
 `;
 
 const Field = styled.label`
@@ -125,6 +159,11 @@ const Field = styled.label`
   font-size: 0.58rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+
+  @media (max-width: 720px) {
+    gap: 0.14rem;
+    font-size: 0.5rem;
+  }
 `;
 
 const NumberInput = styled.input`
@@ -150,6 +189,12 @@ const NumberInput = styled.input`
   }
 
   appearance: textfield;
+
+  @media (max-width: 720px) {
+    min-height: 1.65rem;
+    padding: 0.12rem 0.08rem;
+    font-size: 0.76rem;
+  }
 `;
 
 const Controls = styled.div`
@@ -157,6 +202,11 @@ const Controls = styled.div`
   justify-content: flex-end;
   gap: 0.4rem;
   margin-top: 0.6rem;
+
+  @media (max-width: 720px) {
+    gap: 0.28rem;
+    margin-top: 0.4rem;
+  }
 `;
 
 const Button = styled.button<{ $variant?: "primary" | "ghost" }>`
@@ -180,6 +230,13 @@ const Button = styled.button<{ $variant?: "primary" | "ghost" }>`
     opacity: 0.42;
     cursor: not-allowed;
   }
+
+  @media (max-width: 720px) {
+    min-width: 3.45rem;
+    min-height: 1.7rem;
+    padding: 0.22rem 0.45rem;
+    font-size: 0.66rem;
+  }
 `;
 
 const Launcher = styled.button<{ $running: boolean }>`
@@ -201,6 +258,14 @@ const Launcher = styled.button<{ $running: boolean }>`
   color: var(--text);
   box-shadow: var(--shadow);
   cursor: pointer;
+
+  @media (max-width: 720px) {
+    right: max(0.65rem, env(safe-area-inset-right));
+    bottom: max(2.85rem, calc(env(safe-area-inset-bottom) + 2.05rem));
+    width: 2.85rem;
+    height: 2.85rem;
+    border-radius: 0.38rem;
+  }
 `;
 
 const MiniTime = styled.span`

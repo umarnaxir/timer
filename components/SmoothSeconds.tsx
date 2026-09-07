@@ -13,6 +13,11 @@ const Frame = styled.span`
   vertical-align: baseline;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
+
+  @media (max-width: 720px) {
+    width: 2.45em;
+    min-width: 2.45em;
+  }
 `;
 
 const slideIn = keyframes`
