@@ -94,6 +94,18 @@ const GlobalStyles = createGlobalStyle`
     outline-offset: 3px;
   }
 
+  html[data-show-quote="false"] [data-clock="quote"],
+  html[data-show-date="false"] [data-clock="date"],
+  html[data-show-timezone="false"] [data-clock="timezone"],
+  html[data-show-seconds="false"] [data-clock="seconds"] {
+    display: none !important;
+  }
+
+  html[data-timer-collapsed="true"] [data-timer="panel"] {
+    visibility: hidden;
+    pointer-events: none;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html,
     body,

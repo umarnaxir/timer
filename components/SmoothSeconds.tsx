@@ -77,7 +77,7 @@ export default function SmoothSeconds({ value }: { value: string }) {
   }
 
   return (
-    <Frame aria-hidden="true">
+    <Frame data-clock="seconds" aria-hidden="true">
       {previous !== current ? (
         <Outgoing key={`out-${version}`}>{previous}</Outgoing>
       ) : null}

@@ -9,7 +9,6 @@ import {
 } from "react";
 import {
   defaultPreferences,
-  getPreferencesSnapshot,
   readPreferences,
   subscribePreferences,
   writePreferences,
@@ -29,12 +28,14 @@ type PreferencesContextValue = {
 const PreferencesContext = createContext<PreferencesContextValue | null>(null);
 
 function getSnapshot() {
-  return getPreferencesSnapshot();
+  return readPreferences();
 }
 
 function subscribe(listener: () => void) {
+  const unsubscribe = subscribePreferences(listener);
   readPreferences();
-  return subscribePreferences(listener);
+  listener();
+  return unsubscribe;
 }
 
 export function PreferencesProvider({ children }: { children: React.ReactNode }) {
@@ -46,17 +47,17 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
 
   const setPreference = useCallback(
     <K extends keyof Preferences>(key: K, value: Preferences[K]) => {
-      writePreferences({ ...getPreferencesSnapshot(), [key]: value });
+      writePreferences({ ...readPreferences(), [key]: value });
     },
     [],
   );
 
   const setHourFormat = useCallback((value: HourFormat) => {
-    writePreferences({ ...getPreferencesSnapshot(), hourFormat: value });
+    writePreferences({ ...readPreferences(), hourFormat: value });
   }, []);
 
   const setSoundType = useCallback((value: SoundType) => {
-    writePreferences({ ...getPreferencesSnapshot(), soundType: value });
+    writePreferences({ ...readPreferences(), soundType: value });
   }, []);
 
   const resetPreferences = useCallback(() => {

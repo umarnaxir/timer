@@ -419,6 +419,7 @@ export default function Timer() {
     return (
       <Launcher
         type="button"
+        data-timer="launcher"
         $running={status === "running"}
         aria-label="Show timer"
         title="Show timer"
@@ -434,7 +435,7 @@ export default function Timer() {
   }
 
   return (
-    <Panel aria-label="Countdown timer">
+    <Panel data-timer="panel" aria-label="Countdown timer">
       <Header>
         <Label>Timer</Label>
         <IconRow>

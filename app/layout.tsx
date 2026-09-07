@@ -8,6 +8,7 @@ import {
   SITE_TITLE,
   SITE_URL,
 } from "@/lib/site";
+import { preferencesInitScript } from "@/lib/preferences";
 import { themeInitScript } from "@/lib/theme";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { PreferencesProvider } from "@/components/PreferencesProvider";
@@ -111,6 +112,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <script dangerouslySetInnerHTML={{ __html: preferencesInitScript }} />
       </head>
       <body>
         <StyledComponentsRegistry>

@@ -113,7 +113,9 @@ export default function Clock({ now }: ClockProps) {
         <Unit suppressHydrationWarning>{time.minutes}</Unit>
         {showSeconds ? (
           <>
-            <Colon aria-hidden="true">:</Colon>
+            <Colon data-clock="seconds" aria-hidden="true">
+              :
+            </Colon>
             <SmoothSeconds value={time.seconds} />
           </>
         ) : null}
@@ -121,9 +123,13 @@ export default function Clock({ now }: ClockProps) {
       </TimeRow>
       {preferences.showDate ? <DateDisplay now={now} /> : null}
       {preferences.showQuote ? (
-        <Quote suppressHydrationWarning>{getDailyQuote(now)}</Quote>
+        <Quote data-clock="quote" suppressHydrationWarning>
+          {getDailyQuote(now)}
+        </Quote>
       ) : null}
-      {preferences.showTimezone ? <Zone>Kolkata, India (IST)</Zone> : null}
+      {preferences.showTimezone ? (
+        <Zone data-clock="timezone">Kolkata, India (IST)</Zone>
+      ) : null}
     </Stack>
   );
 }
