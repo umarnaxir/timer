@@ -136,11 +136,10 @@ export default function Clock({ now }: ClockProps) {
         $showSeconds={showSeconds}
         dateTime={dateTime}
         aria-label={`Current time, ${time.text} India Standard Time`}
-        suppressHydrationWarning
       >
-        <Unit suppressHydrationWarning>{time.hours}</Unit>
+        <Unit>{time.hours}</Unit>
         <Colon aria-hidden="true">:</Colon>
-        <Unit suppressHydrationWarning>{time.minutes}</Unit>
+        <Unit>{time.minutes}</Unit>
         {showSeconds ? (
           <>
             <Colon data-clock="seconds" aria-hidden="true">
@@ -149,13 +148,11 @@ export default function Clock({ now }: ClockProps) {
             <SmoothSeconds value={time.seconds} />
           </>
         ) : null}
-        {time.period ? <Period suppressHydrationWarning>{time.period}</Period> : null}
+        {time.period ? <Period>{time.period}</Period> : null}
       </TimeRow>
       {preferences.showDate ? <DateDisplay now={now} /> : null}
       {preferences.showQuote ? (
-        <Quote data-clock="quote" suppressHydrationWarning>
-          {getDailyQuote(now)}
-        </Quote>
+        <Quote data-clock="quote">{getDailyQuote(now)}</Quote>
       ) : null}
       {preferences.showTimezone ? (
         <Zone data-clock="timezone">Kolkata, India (IST)</Zone>

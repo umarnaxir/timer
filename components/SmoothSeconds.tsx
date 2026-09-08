@@ -86,9 +86,7 @@ export default function SmoothSeconds({ value }: { value: string }) {
       {previous !== current ? (
         <Outgoing key={`out-${version}`}>{previous}</Outgoing>
       ) : null}
-      <Incoming key={`in-${version}`} suppressHydrationWarning>
-        {current}
-      </Incoming>
+      <Incoming key={`in-${version}`}>{current}</Incoming>
     </Frame>
   );
 }

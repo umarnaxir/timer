@@ -6,6 +6,8 @@ import {
   SITE_URL,
 } from "@/lib/site";
 
+export const dynamic = "force-dynamic";
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [

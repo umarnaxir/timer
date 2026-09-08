@@ -1,39 +1,11 @@
 export const KOLKATA_TIME_ZONE = "Asia/Kolkata";
 
-const time12Formatter = new Intl.DateTimeFormat("en-US", {
-  timeZone: KOLKATA_TIME_ZONE,
-  hour: "2-digit",
-  minute: "2-digit",
-  second: "2-digit",
-  hour12: true,
-});
-
-const time24Formatter = new Intl.DateTimeFormat("en-GB", {
-  timeZone: KOLKATA_TIME_ZONE,
-  hour: "2-digit",
-  minute: "2-digit",
-  second: "2-digit",
-  hourCycle: "h23",
-});
-
-const dateFormatter = new Intl.DateTimeFormat("en-US", {
-  timeZone: KOLKATA_TIME_ZONE,
-  weekday: "long",
-  month: "long",
-  day: "numeric",
-  year: "numeric",
-});
-
-const dateTimeFormatter = new Intl.DateTimeFormat("sv-SE", {
-  timeZone: KOLKATA_TIME_ZONE,
-  year: "numeric",
-  month: "2-digit",
-  day: "2-digit",
-  hour: "2-digit",
-  minute: "2-digit",
-  second: "2-digit",
-  hourCycle: "h23",
-});
+function kolkataFormatter(locale: string, options: Intl.DateTimeFormatOptions) {
+  return new Intl.DateTimeFormat(locale, {
+    timeZone: KOLKATA_TIME_ZONE,
+    ...options,
+  });
+}
 
 function partValue(
   parts: Intl.DateTimeFormatPart[],
@@ -55,8 +27,26 @@ export function formatKolkataTime(
   hour12 = true,
   showSeconds = true,
 ): KolkataTime {
-  const parts = (hour12 ? time12Formatter : time24Formatter).formatToParts(date);
-  const hours = partValue(parts, "hour").padStart(2, "0");
+  const formatter = hour12
+    ? kolkataFormatter("en-US", {
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+      })
+    : kolkataFormatter("en-GB", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hourCycle: "h23",
+      });
+  const parts = formatter.formatToParts(date);
+  const hourPart = Number.parseInt(partValue(parts, "hour"), 10);
+  const safeHour = Number.isFinite(hourPart) ? hourPart : 0;
+  const hours = String(hour12 ? (safeHour % 12 === 0 ? 12 : safeHour % 12) : safeHour).padStart(
+    2,
+    "0",
+  );
   const minutes = partValue(parts, "minute").padStart(2, "0");
   const seconds = partValue(parts, "second").padStart(2, "0");
   const period = hour12
@@ -74,11 +64,26 @@ export function formatKolkataTime(
 }
 
 export function formatKolkataDate(date: Date) {
-  return dateFormatter.format(date);
+  return kolkataFormatter("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  }).format(date);
 }
 
 export function formatKolkataDateTimeAttribute(date: Date) {
-  return dateTimeFormatter.format(date).replace(" ", "T");
+  return kolkataFormatter("sv-SE", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hourCycle: "h23",
+  })
+    .format(date)
+    .replace(" ", "T");
 }
 
 export function formatDuration(totalSeconds: number) {

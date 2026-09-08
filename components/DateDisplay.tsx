@@ -25,9 +25,7 @@ const DateText = styled.p`
 export default function DateDisplay({ now }: { now: Date }) {
   return (
     <DateText data-clock="date" aria-live="off">
-      <time dateTime={formatKolkataDateTimeAttribute(now)} suppressHydrationWarning>
-        {formatKolkataDate(now)}
-      </time>
+      <time dateTime={formatKolkataDateTimeAttribute(now)}>{formatKolkataDate(now)}</time>
     </DateText>
   );
 }
